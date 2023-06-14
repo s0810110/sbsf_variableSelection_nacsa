@@ -1,0 +1,57 @@
+import matplotlib.pyplot as plt
+
+metric_dict1, metric_dict2 = fdict
+best_feature_idx1, best_feature_idx2 = best_feature_idx
+
+kind = "ci"
+color1 = "blue"
+color2 = "green" # Different color for the second dataframe
+bcolor = "steelblue"
+marker = "o"
+alpha = 0.2
+ylabel = "AUC Performance"
+figsize = None
+
+if figsize is not None:
+fig = plt.subplots(figsize=figsize)
+else:
+fig = plt.figure(figsize=(12, 8), dpi=300, facecolor='w', edgecolor='k')
+
+k_feat1 = sorted(metric_dict1.keys())
+avg1 = [metric_dict1[k]["avg_score"] for k in k_feat1]
+
+k_feat2 = sorted(metric_dict2.keys())
+avg2 = [metric_dict2[k]["avg_score"] for k in k_feat2]
+
+if kind:
+upper1, lower1 = [], []
+upper2, lower2 = [], []
+if kind == "ci":
+kind = "ci_bound"
+
+css
+Copy code
+for k in k_feat1:
+    upper1.append(metric_dict1[k]["avg_score"] + metric_dict1[k][kind])
+    lower1.append(metric_dict1[k]["avg_score"] - metric_dict1[k][kind])
+
+for k in k_feat2:
+    upper2.append(metric_dict2[k]["avg_score"] + metric_dict2[k][kind])
+    lower2.append(metric_dict2[k]["avg_score"] - metric_dict2[k][kind])
+
+plt.fill_between(k_feat1, upper1, lower1, alpha=alpha, color=bcolor, lw=1)
+plt.fill_between(k_feat2, upper2, lower2, alpha=alpha, color=bcolor, lw=1)
+
+if kind == "ci_bound":
+    kind = "Confidence Interval (%d%%)" % (confidence_interval * 100)
+plt.plot(k_feat1, avg1, color=color1, marker=marker) # Use color1 for the first dataframe
+plt.plot(k_feat2, avg2, color=color2, marker=marker) # Use color2 for the second dataframe
+plt.axvline(x=len(best_feature_idx1))
+plt.axvline(x=len(best_feature_idx2))
+plt.annotate(len(best_feature_idx1), (k_feat1[len(best_feature_idx1)] - 0.5, avg1[len(best_feature_idx1)] + 0.005))
+plt.annotate(len(best_feature_idx2), (k_feat2[len(best_feature_idx2)] - 0.5, avg2[len(best_feature_idx2)] + 0.005))
+plt.ylabel(ylabel)
+plt.xlabel("Number of Features")
+feature_min = len(metric_dict1[k_feat1[0]]["feature_idx"])
+feature_max = len(metric_dict1[k_feat1[-1]]["feature_idx"])
+plt.xticks(range(feature_min, feature_max + 1, 5), range(feature_min, feature_max + 1, 5))
