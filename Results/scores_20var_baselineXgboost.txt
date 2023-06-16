@@ -1,0 +1,3 @@
+
+using var size 20 of xgboost sfbs selected variables in 5 fold cv to extract prob and actual 
+for O-E bootstrap calculation of three point values: 20, 23 and 25 var sizes 

@@ -1,0 +1,2 @@
+contains prob and actual labels for var size 20 sfbs 5 fold cv results of xgboost 
+for O-E boostrap calculations later
