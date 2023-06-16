@@ -1,0 +1,2 @@
+O-E bootstrap mean and 95%CI using 100 boostrap samples and boot-t CI estimations
+for 20, 23, and 25 of sfbs variables set Xgboost models 
