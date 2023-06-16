@@ -20,8 +20,16 @@ df_Xgboost_test <- fread('modelOutput/df_Eurosc_II_xgboost_test.csv',
 df_Xgboost_test <- df_Xgboost_test[complete.cases(df_Xgboost_test), ]
 
 
+df_logistic_test <- fread('modelOutput/df_Eurosc_II_logisticReg_test.csv', 
+                         select=c('logisticREg_test', 'mtly'), data.table=FALSE)
+
+df_logistic_test <- df_logistic_test[complete.cases(df_logistic_test), ]
+
+
+
+
 #n_models=list(`Logistic Regression`=df_lr_test, `Neuronetwork`=df_NN_test, `Random Forest`=df_rf_test, `EuroSCORE II`=df_test_Eurosc, `Weighted SVM`=df_svc_test, `Xgboost`=df_Xgboost_test )
-n_models=list(`Xgboost`=df_Xgboost_test )
+n_models=list(`Xgboost`=df_Xgboost_test, `Logistic Regression`=df_logistic_test )
 
 names(n_models)
 
@@ -144,7 +152,7 @@ for (i in seq_along(n_models)) {
   
 }
 
-tiff("results/xgboost_2017_2019_DecisionCurveAnalysisTreated.tiff", units="in", width=5, height=5, res=300)
+tiff("results/combinedXgbLR_2017_2019_DecisionCurveAnalysisTreated.tiff", units="in", width=5, height=5, res=300)
 #tiff("../modelOutput/Figures/Calibration/Yearly_Euroscore_II_2017_2019_DecisionCurveAnalysisOverall.tiff", units="in", width=5, height=5, res=300)
 #tiff("C:/Installation WorkPCToLaptop/Dashboard/cardiacMLCalDriftAnalysis/code_Euroscore_II_TestOnlyRequired30_newDataset/Training2012_2016/Figures/Calibration/Yearly_Euroscore_II_2012_2016_DecisionCurveAnalysisOverall.tiff", units="in", width=5, height=5, res=300)
 
