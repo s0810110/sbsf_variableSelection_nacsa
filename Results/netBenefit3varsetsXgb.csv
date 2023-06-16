@@ -1,0 +1,4 @@
+,Model Name,net benefit mean,net benefit 95% CI lower,net benefit 95% CI upper
+1,var20_XgboostTrain,0.000407477,0.000203808,0.000611146
+2,var23_XgboostTrain,0.019897212,0.014933024,0.024861401
+3,var25_XgboostTrain,0.019902922,0.014931255,0.024874588
