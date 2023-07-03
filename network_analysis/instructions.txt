@@ -1,0 +1,9 @@
+
+sparsebn does not work on macos
+
+on large PC, all required R packages e.g. sparsebn and sf for ONS plots are available: 
+
+C:\Users\qiani\Documents\R\win-library\4.0
+
+I had to manually copy the packages into the current R version on large PC, i.e. R 4.2.1 x64
+
