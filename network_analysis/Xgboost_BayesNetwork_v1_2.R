@@ -3,7 +3,6 @@ library(rstudioapi)
 current_path = rstudioapi::getActiveDocumentContext()$path 
 setwd(dirname(current_path ))
 
-devtools::install_github("itsrainingdata/ccdrAlgorithm"). #use instead of "itsrainingdata/ccdrAlgorithm/dev"
 #devtools::install_github(c("itsrainingdata/sparsebn", "itsrainingdata/sparsebnUtils/dev", "itsrainingdata/ccdrAlgorithm/dev", "gujyjean/discretecdAlgorithm"))
 devtools::install_github("itsrainingdata/sparsebn")
 
@@ -49,7 +48,7 @@ df <- df[, new_cols]
 df  # Update re-ordered dataframe
 cardioDataCal_Eurosc_II_Train <- df
 
-cardioDataCal_Eurosc_II_TrainInput <- cardioDataCal_Eurosc_II_Train[, 1:61]
+cardioDataCal_Eurosc_II_TrainInput <- cardioDataCal_Eurosc_II_Train[, 1:62]
 
 colnames(cardioDataCal_Eurosc_II_TrainInput)
 
@@ -68,16 +67,16 @@ cardioDataCal_Eurosc_II_TrainInput_graph.learn <- estimate.dag(cardioDataCal_Eur
 #Model selection
 
 selected.lambda <- select.parameter(cardioDataCal_Eurosc_II_TrainInput_graph.learn, cardioDataCal_Eurosc_II_TrainInput_graph) #5
+#7
 
 selected.lambda = 10
 
 
-#plot for first 50 (not necessarily best ones) from all urine metabolites 
-tiff("xgboostHotEnc_varAll.tiff", units="in", width=5.8, height=5, res=300)
+tiff("xgboost_varAll.tiff", units="in", width=5.8, height=5, res=300)
 
-
+seed(7)
 plot(cardioDataCal_Eurosc_II_TrainInput_graph.learn[[selected.lambda]], vertex.label = get.nodes(cardioDataCal_Eurosc_II_TrainInput_graph.learn[[selected.lambda]])
-     , vertex.size = 10
+     , vertex.size = 9   #10
      , vertex.label.cex = 0.5
      , vertex.label.color = gray(0)
      , vertex.color = gray(0.9)
